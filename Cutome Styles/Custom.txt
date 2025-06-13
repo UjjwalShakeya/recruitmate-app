@@ -1,0 +1,763 @@
+// Layout.js 
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Mini Project</title>
+
+    <!-- custom css and javascript -->
+    <script src="/js/modal.js"></script>
+    <link rel="stylesheet" href="/css/modal.css" />
+
+  </head>
+
+  <style>
+    .navbar {
+      background-color: #34144a !important;
+    }
+  </style>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="">easily</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="./"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./jobs">Jobs</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <%= locals.userName || "Recruiter" %>
+              <!-- 👈 Show user's name if logged in -->
+            </a>
+            
+            <div class="dropdown-menu">
+              <% if (locals.userName) { %>
+              <a class="dropdown-item" href="./logout">Logout</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="./postjob">Post New Job</a>
+              <% } else { %>
+              <a class="dropdown-item" href="./login">Login</a>
+              <% } %>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
+    </nav>
+    <div><%- body %></div>
+
+    <footer class="bg-light text-dark pt-5 pb-3">
+      <div class="container">
+        <div class="row">
+          <!-- About -->
+          <div class="col-md-3 mb-4">
+            <h5 class="fw-bold">About Easily</h5>
+            <p>
+              Your go-to platform for finding dream jobs. We connect talented
+              professionals with top companies worldwide.
+            </p>
+            <div class="d-flex gap-3">
+              <a href="#"><i class="fab fa-linkedin fa-lg text-dark"></i></a>
+              <a href="#"><i class="fab fa-twitter fa-lg text-dark"></i></a>
+              <a href="#"><i class="fab fa-facebook fa-lg text-dark"></i></a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="col-md-3 mb-4">
+            <h5 class="fw-bold">Quick Links</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#" class="text-dark text-decoration-none">Find Jobs</a>
+              </li>
+              <li>
+                <a href="#" class="text-dark text-decoration-none"
+                  >Post a Job</a
+                >
+              </li>
+              <li>
+                <a href="#" class="text-dark text-decoration-none">About Us</a>
+              </li>
+              <li>
+                <a href="#" class="text-dark text-decoration-none"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div class="col-md-3 mb-4">
+            <h5 class="fw-bold">Contact</h5>
+            <p>
+              <i class="fas fa-map-marker-alt me-2"></i>123 Job Street, Job City
+            </p>
+            <p><i class="fas fa-phone me-2"></i>(123) 456-7890</p>
+            <p><i class="fas fa-envelope me-2"></i>info@easily.com</p>
+          </div>
+
+          <!-- Newsletter -->
+          <div class="col-md-3 mb-4">
+            <h5 class="fw-bold">Newsletter</h5>
+            <p>Get the latest job updates and career tips.</p>
+            <form class="d-flex">
+              <input
+                type="email"
+                class="form-control me-2"
+                placeholder="Enter your email"
+              />
+              <button class="btn btn-danger">Subscribe</button>
+            </form>
+          </div>
+        </div>
+
+        <hr />
+        <div class="text-center">
+          <p class="mb-0">
+            © <%= new Date().getFullYear() %> Easily. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
+
+
+// Home js 
+
+<style>
+  .hero-section {
+    background-color: #ffffff;
+    color: white;
+    padding: 100px 0;
+    min-height: 100vh;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #34144a;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    color: #a08fab;
+    margin-top: 20px;
+  }
+
+  .btn-hero {
+    background-color: #34144a;
+    border: none;
+    color: white;
+    margin-right: 15px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+
+  .btn-hero:hover {
+    background-color: #511976;
+    color: azure;
+  }
+
+  .hero-img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+<section class="hero-section">
+  <div class="container">
+    <div
+      class="d-flex justify-content-between align-items-center flex-wrap-reverse"
+    >
+      <!-- Left Side Text -->
+      <div class="col-md-6">
+        <h1 class="hero-title">
+          A comprehensive platform for<br />
+          reliable
+        </h1>
+        <p class="hero-subtitle">job opportunities and internships.</p>
+        <p>Get Discovered. Get Hired.</p>
+        <div class="mt-4">
+          <a class="btn btn-hero" href="">I'm A Job Seeker</a>
+          
+          <!-- Trigger Button -->
+          <button id="recruiterBtn" class="btn btn-hero">
+            I'm A Recruiter
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div id="recruiterModal">
+        <div class="d-flex align-items-center justify-content-center vh-100">
+          <div class="modal-custom bg-white p-4 vw-100">
+            <div class="modal-header justify-content-between">
+              <h5 class="modal-title fw-bold">Create an Account</h5>
+              <!-- Close Button -->
+              <button
+                type="button"
+                id="closeModal"
+                class="btn-close"
+                aria-label="Close"
+              >
+                &times;
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="/register" method="POST">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Full Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="johndoe@xyz.com"
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="password" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="••••••••"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mb-2">
+                  Register Now
+                </button>
+              </form>
+              <div class="text-center">
+                <small>
+                  Already have an account?
+                  <a href="./login" class="text-primary fw-bold">Login</a>
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side Image -->
+      <div class="col-md-6 text-center">
+        <img
+          src="https://i.ibb.co/7znYSp2/hero-mockup.png"
+          alt="Mockup Image"
+          class="hero-img"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+// job .ejs 
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f7f9fc;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    display: flex;
+    padding: 20px;
+  }
+
+  .filters {
+    width: 250px;
+    background: #fff;
+    padding: 20px;
+    margin-right: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .jobs-list {
+    flex: 1;
+  }
+
+  .job-card {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .job-card .tags span {
+    display: inline-block;
+    background: #f0f0f0;
+    margin: 3px 6px 0 0;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-view {
+    background-color: #2563eb;
+    color: white;
+  }
+
+  .btn-save {
+    background-color: #e5e7eb;
+    color: #111;
+  }
+
+  .easy-apply {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 4px;
+  }
+
+  .search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  input[type="text"] {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+  }
+
+  select,
+  button {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+</style>
+
+<div class="container">
+  <!-- Filters -->
+  <aside class="filters">
+    <h3>Job Filters</h3>
+    <div>
+      <h4>Date posted</h4>
+      <label><input type="radio" name="posted" checked /> Past week</label
+      ><br />
+      <label><input type="radio" name="posted" /> Past 24 hours</label><br />
+      <label><input type="radio" name="posted" /> Past 3 days</label><br />
+      <label><input type="radio" name="posted" /> Past month</label>
+    </div>
+    <div style="margin-top: 15px">
+      <h4>Experience level</h4>
+      <label><input type="checkbox" checked /> Entry level</label><br />
+      <label><input type="checkbox" /> Internship</label><br />
+      <label><input type="checkbox" /> Associate</label><br />
+      <label><input type="checkbox" /> Mid-Senior level</label>
+    </div>
+  </aside>
+
+  <!-- Job Listings -->
+  <main class="jobs-list">
+    <div class="search-bar">
+      <input type="text" placeholder="Search job titles or keywords" />
+      <input type="text" placeholder="Location" />
+      <button>Search</button>
+      <select>
+        <option selected>Most relevant</option>
+        <option>Newest</option>
+      </select>
+    </div>
+
+    <p><%= jobs.length %> jobs found</p>
+
+    <% jobs.forEach(job => { %>
+    <div class="job-card">
+      <h3><%= job.title %></h3>
+      <p><strong><%= job.company %></strong> - <%= job.location %></p>
+      <p>
+        <%= job.experience %> years experience | ₹<%= job.salary.min %> – ₹<%=
+        job.salary.max %> per year | <%= job.applicants %> applicants
+      </p>
+
+      <% if (job.easyApply) { %>
+      <div class="easy-apply">Easy Apply</div>
+      <% } %>
+
+      <div class="tags">
+        <% job.skills.forEach(skill => { %>
+        <span><%= skill %></span>
+        <% }) %>
+      </div>
+
+      <p style="font-size: 0.85rem; margin-top: 10px; color: gray">
+        Posted on <%= job.postedAt %>
+      </p>
+
+      <div class="actions">
+        <button class="btn btn-save">Save</button>
+        <button class="btn btn-view">View</button>
+      </div>
+    </div>
+    <% }) %>
+  </main>
+</div>
+
+user login ejs 
+<style>
+  .modal-custom {
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  }
+  .modal-header {
+    background: linear-gradient(to right, #511976, #34144a);
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  .form-control {
+    background-color: #f1f5ff;
+    border-radius: 8px;
+  }
+  .btn-primary {
+    background-color: #511976;
+    border: none;
+    border-radius: 8px;
+    background-color: #34144a;
+  }
+  .btn-primary:hover {
+    background-color: #511976;
+  }
+  .btn-close {
+    filter: brightness(0) invert(1);
+  }
+</style>
+
+<div class="d-flex align-items-center justify-content-center vh-100 bg-light">
+  <div class="modal-custom bg-white p-4 vw-100">
+    <div class="modal-header justify-content-between">
+      <h5 class="modal-title fw-bold">Login To Your Account</h5>
+    </div>
+    <div class="modal-body">
+      <form action="/login" method="POST">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="johndoe@xyz.com"
+          />
+        </div>
+        <div class="mb-4">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mb-2">
+          Login Now
+        </button>
+      </form>
+      <div class="text-center">
+        <small>
+          Don't have an account?
+          <a href="/register" class="text-primary fw-bold">Register</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+new jobs .//// 
+
+
+<!-- <div class="container d-flex justify-content-center mt-5 my-5">
+  <div class="card shadow-sm p-4" style="width: 100%; max-width: 600px; border-radius: 12px;">
+    <h3 class="text-center mb-4" style="color: #132043;">Post a new Job</h3>
+
+    <form action="/postjob" method="POST">
+      <div class="mb-3">
+        <select class="form-select" name="category" required>
+          <option value="" disabled selected>select job category</option>
+          <option>IT</option>
+          <option>Marketing</option>
+          <option>Design</option>
+          <option>Finance</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <select class="form-select" name="designation" required>
+          <option value="" disabled selected>select job designation</option>
+          <option>Frontend Developer</option>
+          <option>Backend Developer</option>
+          <option>UI/UX Designer</option>
+          <option>HR Executive</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <input type="text" class="form-control" name="location" placeholder="Enter job location" required />
+      </div>
+
+      <div class="mb-3">
+        <input type="text" class="form-control" name="companyName" placeholder="Company Name" required />
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <input type="number" class="form-control" name="yearFounded" placeholder="Year Founded" required />
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="numEmployees" placeholder="Number of Employees" required />
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" class="form-control" name="salary" placeholder="enter salary" required />
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="positions" placeholder="Total Positions" required />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <input type="number" class="form-control" name="experience" placeholder="Experience (in years)" required />
+      </div>
+
+      <div class="mb-3">
+        <select class="form-select" name="skills" multiple size="4" required>
+          <option disabled>select skills required for this job</option>
+          <option>React</option>
+          <option>Node.js</option>
+          <option>Angular</option>
+          <option>MongoDB</option>
+          <option>Python</option>
+        </select>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col">
+          <label for="companyLogo" class="form-label">Company Logo</label>
+          <input type="file" class="form-control" name="companyLogo" accept="image/*" />
+        </div>
+        <div class="col">
+          <label for="applyBy" class="form-label">Apply By</label>
+          <input type="date" class="form-control" name="applyBy" required />
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-success w-100 mt-2">Submit</button>
+    </form>
+  </div>
+</div> -->
+
+
+<!-- Add this in <head> -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"> -->
+
+<!--
+<div class="container d-flex justify-content-center align-items-center my-5">
+  <div class="card shadow p-4" style="width: 100%; max-width: 650px; border-radius: 16px; border: none;">
+    <h3 class="text-center mb-4" style="color: #0d6efd;"><i class="bi bi-briefcase-fill me-2"></i>Post a New Job</h3>
+
+    <form action="/postjob" method="POST" enctype="multipart/form-data" id="jobForm">
+      
+      
+      <div class="mb-3">
+        <label class="form-label"><i class="bi bi-tags-fill me-2"></i>Category</label>
+        <select class="form-select" name="category" required>
+          <option value="" disabled selected>Select job category</option>
+          <option>IT</option>
+          <option>Marketing</option>
+          <option>Design</option>
+          <option>Finance</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"><i class="bi bi-person-badge-fill me-2"></i>Designation</label>
+        <select class="form-select" name="designation" required>
+          <option value="" disabled selected>Select job designation</option>
+          <option>Frontend Developer</option>
+          <option>Backend Developer</option>
+          <option>UI/UX Designer</option>
+          <option>HR Executive</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"><i class="bi bi-geo-alt-fill me-2"></i>Location</label>
+        <input type="text" class="form-control" name="location" placeholder="Enter job location" required />
+      </div>
+
+ 
+      <div class="mb-3">
+        <label class="form-label"><i class="bi bi-building me-2"></i>Company Name</label>
+        <input type="text" class="form-control" name="companyName" placeholder="Company Name" required />
+      </div>
+
+
+      <div class="row mb-3">
+        <div class="col">
+          <input type="number" class="form-control" name="yearFounded" placeholder="Year Founded" required />
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="numEmployees" placeholder="Number of Employees" required />
+        </div>
+      </div>
+
+     
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" class="form-control" name="salary" placeholder="Enter salary" required />
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" name="positions" placeholder="Total Positions" required />
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <input type="number" class="form-control" name="experience" placeholder="Experience (in years)" required />
+      </div>
+
+ 
+      <div class="mb-3">
+        <label class="form-label"><i class="bi bi-tools me-2"></i>Skills</label>
+        <select class="form-select" name="skills" multiple size="4" required>
+          <option disabled>Select skills required for this job</option>
+          <option>React</option>
+          <option>Node.js</option>
+          <option>Angular</option>
+          <option>MongoDB</option>
+          <option>Python</option>
+        </select>
+      </div>
+
+
+      <div class="row mb-3">
+        <div class="col">
+          <label for="companyLogo" class="form-label"><i class="bi bi-image me-2"></i>Company Logo</label>
+          <input type="file" class="form-control" name="companyLogo" accept="image/*" />
+        </div>
+        <div class="col">
+          <label for="applyBy" class="form-label"><i class="bi bi-calendar-date me-2"></i>Apply By</label>
+          <input type="date" class="form-control" name="applyBy" required />
+        </div>
+      </div>
+
+  
+      <button type="submit" class="btn btn-primary w-100 mt-3" style="border-radius: 8px;">
+        <i class="bi bi-send-fill me-1"></i>Submit Job
+      </button>
+    </form>
+  </div>
+</div> -->
+
+
+
+
+

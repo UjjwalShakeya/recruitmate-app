@@ -1,0 +1,20 @@
+{
+  "name": "job-portal-website",
+  "version": "1.0.0",
+  "description": "user-friendly platform for job seeker and recruiters",
+  "main": "index",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Ujjwal Shakeya",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.1"
+  }
+}

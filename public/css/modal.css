@@ -1,0 +1,81 @@
+/* Modal Container */
+#recruiterModal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 1050;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content */
+.modal-custom {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Modal Header */
+.modal-header {
+  background: linear-gradient(to right, #511976, #34144a);
+  color: #ffffff;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Close Button */
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 1rem;
+}
+
+/* Form Controls */
+.form-control {
+  background-color: #f1f5ff;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+/* Submit Button */
+.btn-primary {
+  background-color: #34144a;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  width: 100%;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #511976;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .modal-custom {
+    width: 95%;
+  }
+}
