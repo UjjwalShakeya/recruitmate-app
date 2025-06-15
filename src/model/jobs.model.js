@@ -52,6 +52,11 @@ export default class JobsModel {
       apply_by,
     } = job;
 
+    
+    const formattedSalary = formatSalary(salary); 
+    // 👇 Format employees with commas
+    const formattedEmployees = Number(employees).toLocaleString() + "+ employees";
+
     const newJob = new JobsModel(
       jobs.length + 1,
       job_category,
@@ -59,15 +64,14 @@ export default class JobsModel {
       job_location,
       company_name,
       company_founded,
-      employees,
-      salary,
+      formattedEmployees,
+      formattedSalary,
       number_of_openings,
       experience,
       skills_required,
       logo,
       apply_by
     );
-    console.log(newJob);
     return jobs.push(newJob);
   }
 }
@@ -75,54 +79,66 @@ export default class JobsModel {
 let jobs = [
   {
     id: 1,
-    featured: true,
-    logo: "https://logo.clearbit.com/google.com",
+    company_logo: "https://logo.clearbit.com/google.com",
     job_designation: "Frontend Developer",
     company_name: "Google",
     job_location: "Bangalore, India",
     experience: "0-1 year",
     salary: "₹8 LPA",
-    employees: "10,000+ employees",
+    total_employees: "10,000+ employees",
     skills_required: ["HTML", "CSS", "JavaScript", "React"],
     job_posted: "2 days ago",
   },
   {
     id: 2,
-    featured: false,
-    logo: "https://logo.clearbit.com/microsoft.com",
+    company_logo: "https://logo.clearbit.com/microsoft.com",
     job_designation: "Backend Developer",
     company_name: "Microsoft",
     job_location: "Hyderabad, India",
     experience: "1-3 years",
     salary: "₹12 LPA",
-    employees: "20,000+ employees",
+    total_employees: "20,000+ employees",
     skills_required: ["Node.js", "MongoDB", "REST APIs"],
     job_posted: "3 days ago",
   },
   {
     id: 3,
-    featured: true,
-    logo: "https://logo.clearbit.com/amazon.com",
+    company_logo: "https://logo.clearbit.com/amazon.com",
     job_designation: "Full Stack Engineer",
     company_name: "Amazon",
     job_location: "Remote",
     experience: "Fresher",
     salary: "₹10 LPA",
-    employees: "50,000+ employees",
+    total_employees: "50,000+ employees",
     skills_required: ["React", "Node.js", "AWS"],
     job_posted: "1 day ago",
   },
   {
     id: 4,
-    featured: false,
-    logo: "https://logo.clearbit.com/meta.com",
+    company_logo: "https://logo.clearbit.com/meta.com",
     job_designation: "Intern Software Developer",
     company_name: "Meta",
     job_location: "Mumbai, India",
     experience: "Internship",
     salary: "₹30K/month",
-    employees: "15,000+ employees",
+    total_employees: "15,000+ employees",
     skills_required: ["Python", "Flask", "Machine Learning"],
     job_posted: "5 days ago",
   },
 ];
+
+
+// 👇 Utility function to format salary
+function formatSalary(salary) {
+  const annualSalary = Number(salary);
+  if (isNaN(annualSalary)) return "Invalid salary";
+
+  // Convert to Lakhs
+  const inLakhs = annualSalary / 100000;
+
+  if (inLakhs >= 1) {
+    return `₹${Math.round(inLakhs)} LPA`;
+  } else {
+    return `₹${annualSalary.toLocaleString()}/year`;
+  }
+}

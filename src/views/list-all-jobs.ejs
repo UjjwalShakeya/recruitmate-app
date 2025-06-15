@@ -102,13 +102,8 @@
       <h1 class="text-danger text-center">No jobs found</h1>
       <% } %> <% jobs.forEach(function(job){ %>
       <div class="job-card">
-        <% if(job.featured){ %>
-        <div class="featured-badge">
-          <i class="bi bi-star-fill"></i> Featured
-        </div>
-        <% } %>
         <div class="job-logo">
-          <img src="<%= job.logo %>" alt="Google" />
+          <img src='<%= job.company_logo %>' alt="Google" />
         </div>
         <div class="job-content">
           <h3 class="job-title-all"><%= job.job_designation %></h3>
@@ -124,7 +119,7 @@
               <i class="fa-solid fa-wallet"></i> <%= job.salary %>
             </div>
             <div class="job-detail">
-              <i class="fa-solid fa-users"></i><%= job.employees %>
+              <i class="fa-solid fa-users"></i><%= job.total_employees %>
             </div>
             <span class="easy-apply-badge">Easy Apply</span>
           </div>
@@ -135,7 +130,7 @@
             <% }); %> <% } %>
           </div>
           <div class="job-actions">
-            <div class="job-posted"><%= job.job_posted %> · 127 applicants</div>
+            <div class="job-posted">127 applicants</div>
             <div class="action-btns">
               <button class="save-btn">
                 <i class="bi bi-bookmark"></i> Save
@@ -306,18 +301,6 @@
     position: relative;
     margin-bottom: 15px;
     flex-wrap: wrap;
-  }
-
-  .featured-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: gold;
-    color: #000;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 13px;
-    font-weight: bold;
   }
 
   .job-logo img {

@@ -14,12 +14,15 @@ export default class JobController {
   };
 
   createJob(req, res) {
-    console.log(req.body);
+    // accessing images file from images folder to render image in jobs section 
+    const logo = 'images/' + req.file.filename;
+    req.body.logo = logo;
+
     const newJob = JobsModel.add(req.body); 
     if (newJob == 0){
       return res.render('404');
     }
-    return res.redirect('/jobs');
+    res.redirect('/jobs');
   };
 
   getJobById(req, res) {
