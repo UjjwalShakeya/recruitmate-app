@@ -17,28 +17,28 @@ const jobsControllerInc = new JobsController();
 // ************ Job Routes ************ //
 // GET /jobs - Retrieve all job listings
 
+router.get("/jobs", jobsControllerInc.getAllJobs);
+
 router.get("/postjob", auth, (req, res) => {
   res.render("new-job");
 });
 
 router.post(
   "/job",
-  auth,
+  // auth,
   uploadFile.single('logo'),
   validationMiddleware,
   jobsControllerInc.createJob,
 );
 
-router.get("/jobs", jobsControllerInc.getAllJobs);
-
 // GET /jobs/:id - Retrieve a specific job listing by ID
-router.get("/:id", auth, jobsControllerInc.getJobById);
+router.get("/jobs/:id", jobsControllerInc.getJobById);
 
-// PUT /jobs/:id - Update a specific job listing by ID
-router.put("/:id", auth, jobsControllerInc.updateJobById);
+// // PUT /jobs/:id - Update a specific job listing by ID
+// router.put("/:id", auth, jobsControllerInc.updateJobById);
 
-// DELETE /jobs/:id - Delete a specific job listing by ID
-router.delete("/:id", auth, jobsControllerInc.deleteJobById);
+// // DELETE /jobs/:id - Delete a specific job listing by ID
+// router.delete("/:id", auth, jobsControllerInc.deleteJobById);
 
 // Export router
 export default router;

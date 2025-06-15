@@ -26,8 +26,12 @@ export default class JobController {
   };
 
   getJobById(req, res) {
-    // const { id } = req.params;
-    // res.send(`Retrieve job listing with ID ${id}`);
+    const { id } = req.params;
+    const data = JobsModel.find(id);
+    if (!data) {
+      return res.render("404");
+    }
+    res.render('job-details', {data});
   };
 
   updateJobById(req, res) {

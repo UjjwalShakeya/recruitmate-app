@@ -12,7 +12,7 @@ export default class JobsModel {
     total_positions,
     experience,
     skills,
-    company_logo,
+    logo,
     apply_by
   ) {
     this.id = id;
@@ -23,10 +23,10 @@ export default class JobsModel {
     this.year_founded = year_founded;
     this.total_employees = total_employees;
     this.salary = salary;
-    this.total_positions = total_positions;
+    this.number_of_openings = total_positions;
     this.experience = experience;
     this.skills_required = skills;
-    this.company_logo = company_logo;
+    this.company_logo = logo;
     this.apply_by = apply_by;
   }
 
@@ -52,11 +52,10 @@ export default class JobsModel {
       apply_by,
     } = job;
 
-    
-    const formattedSalary = formatSalary(salary); 
+    const formattedSalary = formatSalary(salary);
     // 👇 Format employees with commas
     const formattedEmployees = Number(employees).toLocaleString() + "+ employees";
-
+    
     const newJob = new JobsModel(
       jobs.length + 1,
       job_category,
@@ -68,11 +67,16 @@ export default class JobsModel {
       formattedSalary,
       number_of_openings,
       experience,
-      skills_required,
+      checkSkills(skills_required),
       logo,
       apply_by
     );
     return jobs.push(newJob);
+  }
+  //   adding new job
+  static find(id) {
+    const isJobFound = jobs.find((job) => job.id == id);
+    return isJobFound;
   }
 }
 
@@ -85,9 +89,10 @@ let jobs = [
     job_location: "Bangalore, India",
     experience: "0-1 year",
     salary: "₹8 LPA",
+    number_of_openings: "1200",
     total_employees: "10,000+ employees",
     skills_required: ["HTML", "CSS", "JavaScript", "React"],
-    job_posted: "2 days ago",
+    apply_by: '2025-09-03' 
   },
   {
     id: 2,
@@ -97,9 +102,11 @@ let jobs = [
     job_location: "Hyderabad, India",
     experience: "1-3 years",
     salary: "₹12 LPA",
+    number_of_openings: "800",
     total_employees: "20,000+ employees",
     skills_required: ["Node.js", "MongoDB", "REST APIs"],
-    job_posted: "3 days ago",
+    apply_by: '2025-12-23'
+
   },
   {
     id: 3,
@@ -109,9 +116,10 @@ let jobs = [
     job_location: "Remote",
     experience: "Fresher",
     salary: "₹10 LPA",
+    number_of_openings: "8",
     total_employees: "50,000+ employees",
     skills_required: ["React", "Node.js", "AWS"],
-    job_posted: "1 day ago",
+    apply_by: "2025-08-16",
   },
   {
     id: 4,
@@ -121,12 +129,12 @@ let jobs = [
     job_location: "Mumbai, India",
     experience: "Internship",
     salary: "₹30K/month",
+    number_of_openings: "16",
     total_employees: "15,000+ employees",
     skills_required: ["Python", "Flask", "Machine Learning"],
-    job_posted: "5 days ago",
+    apply_by: "2025-08-16",
   },
 ];
-
 
 // 👇 Utility function to format salary
 function formatSalary(salary) {
@@ -141,4 +149,15 @@ function formatSalary(salary) {
   } else {
     return `₹${annualSalary.toLocaleString()}/year`;
   }
+}
+
+
+function checkSkills(skills_required) {
+  // 🛠 Ensure it's always an array
+        if (Array.isArray(skills_required)) {
+            return skills_required;
+        } else if (typeof skills_required === 'string') {
+            return skills_required.split(',').map(skill => skill.trim());
+        }
+        return [];
 }
