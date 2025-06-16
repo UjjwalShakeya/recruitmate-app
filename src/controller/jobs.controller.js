@@ -40,8 +40,12 @@ export default class JobController {
   };
 
   deleteJobById(req, res) {
-    const { id } = req.params;
-    res.send(`Delete job listing with ID ${id}`);
+    const { id } = req.params; // constructing id from params
+    const data = JobsModel.delete(id);
+    if (!data) {
+      return res.render("404");
+    }
+    return res.redirect('/jobs');
   };
 
 }

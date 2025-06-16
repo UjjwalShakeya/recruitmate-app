@@ -78,6 +78,12 @@ export default class JobsModel {
     const isJobFound = jobs.find((job) => job.id == id);
     return isJobFound;
   }
+   //   adding new job
+  static delete(id) {
+    const jobIndex = jobs.findIndex(j => j.id ==id);
+    const temp = jobs.splice(jobIndex,1);
+    return temp;
+  }
 }
 
 let jobs = [

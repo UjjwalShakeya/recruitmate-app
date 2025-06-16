@@ -38,7 +38,7 @@ router.get("/jobs/:id", jobsControllerInc.getJobById);
 // router.put("/:id", auth, jobsControllerInc.updateJobById);
 
 // // DELETE /jobs/:id - Delete a specific job listing by ID
-// router.delete("/:id", auth, jobsControllerInc.deleteJobById);
+router.delete("/job/delete/:id",auth,jobsControllerInc.deleteJobById);
 
 // Export router
 export default router;
