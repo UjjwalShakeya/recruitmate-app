@@ -8,11 +8,9 @@ const __dirname = path.dirname(__filename);
 import authRouter from "./src/routes/auth.routes.js";
 import jobRouter from "./src/routes/jobs.routes.js";
 import session from "express-session";
-import auth from "./src/middlewares/auth.middleware.js";
 
 // reassign initiated express
 const app = express();
-
 // used in Express.js to parse incoming JSON data from the request body.
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); //send HTML forms data

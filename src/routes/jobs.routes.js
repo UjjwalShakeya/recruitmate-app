@@ -10,7 +10,6 @@ import validationMiddleware from "../middlewares/validation.middleware.js";
 // Import the recruiter controller (make sure the path is correct)
 import JobsController from "../controller/jobs.controller.js";
 
-
 // Create an instance of the controller class
 const jobsControllerInc = new JobsController();
 
@@ -26,19 +25,27 @@ router.get("/postjob", auth, (req, res) => {
 router.post(
   "/job",
   // auth,
-  uploadFile.single('logo'),
+  uploadFile.single("logo"),
   validationMiddleware,
-  jobsControllerInc.createJob,
+  jobsControllerInc.createJob
 );
 
 // GET /jobs/:id - Retrieve a specific job listing by ID
-router.get("/jobs/:id", jobsControllerInc.getJobById);
+router.get("/job/:id", jobsControllerInc.getJobById);
 
-// // PUT /jobs/:id - Update a specific job listing by ID
-// router.put("/:id", auth, jobsControllerInc.updateJobById);
+// // PUT /job/update/:id - Getting update form
+router.get("/job/update/:id", jobsControllerInc.showUpdateForm);
+
+// Post /job/update/:id - Post Updated data
+router.post(
+  "/job/update/:id",
+  // auth,
+  uploadFile.single("logo"),
+  jobsControllerInc.updateJob
+);
 
 // // DELETE /jobs/:id - Delete a specific job listing by ID
-router.delete("/job/delete/:id",auth,jobsControllerInc.deleteJobById);
+router.get("/job/delete/:id", auth, jobsControllerInc.deleteJobById);
 
 // Export router
 export default router;

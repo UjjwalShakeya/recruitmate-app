@@ -78,12 +78,23 @@ export default class JobsModel {
     const isJobFound = jobs.find((job) => job.id == id);
     return isJobFound;
   }
-   //   adding new job
+   //   deleting a particular Job
   static delete(id) {
     const jobIndex = jobs.findIndex(j => j.id ==id);
     const temp = jobs.splice(jobIndex,1);
     return temp;
   }
+   //   adding new job
+  static update(id,data) {
+    const jobIndex = jobs.findIndex(j => j.id == id);
+    const digitsOnly = data.employees.match(/\d+/g)?.join('');
+    console.log(data) ;
+    console.log(digitsOnly);
+    // data.employees = digitsOnly;
+    data.id = id // attaching id with data 
+    jobs[jobIndex] = data;
+    return jobIndex;
+  };
 }
 
 let jobs = [
