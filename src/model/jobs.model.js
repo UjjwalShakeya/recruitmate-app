@@ -52,10 +52,6 @@ export default class JobsModel {
       apply_by,
     } = job;
 
-    const formattedSalary = formatSalary(salary);
-    // 👇 Format employees with commas
-    const formattedEmployees = Number(employees).toLocaleString() + "+ employees";
-    
     const newJob = new JobsModel(
       jobs.length + 1,
       job_category,
@@ -63,8 +59,8 @@ export default class JobsModel {
       job_location,
       company_name,
       company_founded,
-      formattedEmployees,
-      formattedSalary,
+      employees,
+      salary,
       number_of_openings,
       experience,
       checkSkills(skills_required),
@@ -87,10 +83,6 @@ export default class JobsModel {
    //   adding new job
   static update(id,data) {
     const jobIndex = jobs.findIndex(j => j.id == id);
-    const digitsOnly = data.employees.match(/\d+/g)?.join('');
-    console.log(data) ;
-    console.log(digitsOnly);
-    // data.employees = digitsOnly;
     data.id = id // attaching id with data 
     jobs[jobIndex] = data;
     return jobIndex;
@@ -154,21 +146,21 @@ let jobs = [
 ];
 
 // 👇 Utility function to format salary
-function formatSalary(salary) {
-  const annualSalary = Number(salary);
-  if (isNaN(annualSalary)) return "Invalid salary";
+// function formatSalary(salary) {
+//   const annualSalary = Number(salary);
+//   if (isNaN(annualSalary)) return "Invalid salary";
 
-  // Convert to Lakhs
-  const inLakhs = annualSalary / 100000;
+//   // Convert to Lakhs
+//   const inLakhs = annualSalary / 100000;
 
-  if (inLakhs >= 1) {
-    return `₹${Math.round(inLakhs)} LPA`;
-  } else {
-    return `₹${annualSalary.toLocaleString()}/year`;
-  }
-}
+//   if (inLakhs >= 1) {
+//     return `₹${Math.round(inLakhs)} LPA`;
+//   } else {
+//     return `₹${annualSalary.toLocaleString()}/year`;
+//   }
+// }
 
-
+// checking the skills whether that is array or not
 function checkSkills(skills_required) {
   // 🛠 Ensure it's always an array
         if (Array.isArray(skills_required)) {

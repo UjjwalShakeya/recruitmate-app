@@ -33,7 +33,7 @@ router.post(
 // GET /jobs/:id - Retrieve a specific job listing by ID
 router.get("/job/:id", jobsControllerInc.getJobById);
 
-// // PUT /job/update/:id - Getting update form
+// PUT /job/update/:id - Getting update form
 router.get("/job/update/:id", jobsControllerInc.showUpdateForm);
 
 // Post /job/update/:id - Post Updated data

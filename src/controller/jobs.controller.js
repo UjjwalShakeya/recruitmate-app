@@ -54,7 +54,8 @@ export default class JobController {
   } else {
     // no new file, use old path
     data.company_logo = req.body.old_logo; // attaching Older File 
-  }
+  };
+  
   const isJobUpdated = JobsModel.update(id, data); 
   if (!isJobUpdated) {
     return res.render("404");
