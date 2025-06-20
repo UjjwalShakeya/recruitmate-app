@@ -28,6 +28,7 @@ export default class JobsModel {
     this.skills_required = skills;
     this.company_logo = logo;
     this.apply_by = apply_by;
+    this.applicants = [];
   }
 
   //   adding new job
@@ -87,6 +88,11 @@ export default class JobsModel {
     jobs[jobIndex] = data;
     return jobIndex;
   };
+
+   //   getting all applicants
+  static getApplicants(id) {
+    return jobs[id].applicants || null;
+  };
 }
 
 let jobs = [
@@ -101,7 +107,7 @@ let jobs = [
     number_of_openings: "1200",
     total_employees: "10,000+ employees",
     skills_required: ["HTML", "CSS", "JavaScript", "React"],
-    apply_by: '2025-09-03' 
+    apply_by: '2025-09-03'
   },
   {
     id: 2,

@@ -63,8 +63,7 @@ export default class JobController {
   return res.redirect("/jobs");
 };
 
-
-
+// deleting job by id
   deleteJobById(req, res) {
     const { id } = req.params; // constructing id from params
     const isJobDeleted = JobsModel.delete(id);
@@ -73,4 +72,14 @@ export default class JobController {
     }
     return res.redirect("/jobs");
   }
-}
+
+  // getting all applicants
+  getAllApplicants(req, res) {
+    const { id } = req.params; // constructing id from params
+    const allApplicants = JobsModel.getApplicants(id);
+    if (!allApplicants) {
+      return res.render("404");
+    };
+    return res.render("all-applicants", {allApplicants});
+  };
+};

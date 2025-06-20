@@ -44,8 +44,12 @@ router.post(
   jobsControllerInc.updateJob
 );
 
-// // DELETE /jobs/:id - Delete a specific job listing by ID
+// DELETE /jobs/:id - Delete a specific job listing by ID
 router.get("/job/delete/:id", auth, jobsControllerInc.deleteJobById);
+
+
+// GET  /job/applicants/2 - getting all applicants 
+router.get("/job/applicants/:id", jobsControllerInc.getAllApplicants);
 
 // Export router
 export default router;
