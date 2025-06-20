@@ -82,4 +82,16 @@ export default class JobController {
     };
     return res.render("all-applicants", {allApplicants});
   };
+  
+  // adding a new applicants
+  addNewApplicant(req, res) {
+    const { id } = req.params; // constructing id from params
+    const applicantData = req.body; 
+    // console.log(applicantData);
+    const newApplicant = JobsModel.addApplicants(id,applicantData);
+    if (!newApplicant) {
+      return res.render("404");
+    };
+    return res.redirect(`/job/${id}`);
+  };
 };

@@ -13,7 +13,8 @@ export default class JobsModel {
     experience,
     skills,
     logo,
-    apply_by
+    apply_by,
+    applicants
   ) {
     this.id = id;
     this.job_category = job_category;
@@ -28,7 +29,7 @@ export default class JobsModel {
     this.skills_required = skills;
     this.company_logo = logo;
     this.apply_by = apply_by;
-    this.applicants = [];
+    this.applicants = applicants;
   }
 
   //   adding new job
@@ -53,6 +54,7 @@ export default class JobsModel {
       apply_by,
     } = job;
 
+    // creating model for job
     const newJob = new JobsModel(
       jobs.length + 1,
       job_category,
@@ -66,8 +68,10 @@ export default class JobsModel {
       experience,
       checkSkills(skills_required),
       logo,
-      apply_by
+      apply_by,
+      []
     );
+    console.log(newJob);
     return jobs.push(newJob);
   }
   //   adding new job
@@ -92,6 +96,11 @@ export default class JobsModel {
    //   getting all applicants
   static getApplicants(id) {
     return jobs[id].applicants || null;
+  };
+
+   //   adding a new applicant
+  static addApplicants(id,data) {
+    return jobs[id].applicants.push(data);
   };
 }
 
