@@ -87,11 +87,10 @@ export default class JobController {
   addNewApplicant(req, res) {
     const { id } = req.params; // constructing id from params
     const applicantData = req.body; 
-    // console.log(applicantData);
     const newApplicant = JobsModel.addApplicants(id,applicantData);
     if (!newApplicant) {
       return res.render("404");
     };
-    return res.redirect(`/job/${id}`);
+    return res.redirect(`/jobs`);
   };
 };

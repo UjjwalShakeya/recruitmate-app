@@ -71,7 +71,6 @@ export default class JobsModel {
       apply_by,
       []
     );
-    console.log(newJob);
     return jobs.push(newJob);
   }
   //   adding new job
@@ -79,29 +78,39 @@ export default class JobsModel {
     const isJobFound = jobs.find((job) => job.id == id);
     return isJobFound;
   }
-   //   deleting a particular Job
+  //   deleting a particular Job
   static delete(id) {
-    const jobIndex = jobs.findIndex(j => j.id ==id);
-    const temp = jobs.splice(jobIndex,1);
+    const jobIndex = jobs.findIndex((j) => j.id == id);
+    const temp = jobs.splice(jobIndex, 1);
     return temp;
   }
-   //   adding new job
-  static update(id,data) {
-    const jobIndex = jobs.findIndex(j => j.id == id);
-    data.id = id // attaching id with data 
+  //   adding new job
+  static update(id, data) {
+    const jobIndex = jobs.findIndex((j) => j.id == id);
+    data.id = id; // attaching id with data
     jobs[jobIndex] = data;
     return jobIndex;
-  };
+  }
 
-   //   getting all applicants
+  //   getting all applicants
   static getApplicants(id) {
-    return jobs[id].applicants || null;
-  };
+    const jobIndex = jobs.findIndex((job) => job.id == id); // find correct index
+    return jobs[jobIndex].applicants || null;
+  }
 
-   //   adding a new applicant
-  static addApplicants(id,data) {
-    return jobs[id].applicants.push(data);
-  };
+  //   adding a new applicant
+  static addApplicants(id, data) {
+    const jobIndex = jobs.findIndex((job) => job.id == id); // find correct index
+    if (jobIndex === -1) return null; // job not found
+
+    // Initialize applicants array if not present
+    if (!jobs[jobIndex].applicants) {
+      jobs[jobIndex].applicants = [];
+    };
+
+    jobs[jobIndex].applicants.push(data);
+    return jobs[jobIndex].applicants;
+  }
 }
 
 let jobs = [
@@ -116,7 +125,7 @@ let jobs = [
     number_of_openings: "1200",
     total_employees: "10,000+ employees",
     skills_required: ["HTML", "CSS", "JavaScript", "React"],
-    apply_by: '2025-09-03'
+    apply_by: "2025-09-03",
   },
   {
     id: 2,
@@ -129,8 +138,7 @@ let jobs = [
     number_of_openings: "800",
     total_employees: "20,000+ employees",
     skills_required: ["Node.js", "MongoDB", "REST APIs"],
-    apply_by: '2025-12-23'
-
+    apply_by: "2025-12-23",
   },
   {
     id: 3,
@@ -178,10 +186,10 @@ let jobs = [
 // checking the skills whether that is array or not
 function checkSkills(skills_required) {
   // 🛠 Ensure it's always an array
-        if (Array.isArray(skills_required)) {
-            return skills_required;
-        } else if (typeof skills_required === 'string') {
-            return skills_required.split(',').map(skill => skill.trim());
-        }
-        return [];
+  if (Array.isArray(skills_required)) {
+    return skills_required;
+  } else if (typeof skills_required === "string") {
+    return skills_required.split(",").map((skill) => skill.trim());
+  }
+  return [];
 }
