@@ -1,13 +1,14 @@
 import multer from "multer";
+import path from "path";
 
-// creating multer and configuring this to enable uploading image
+// storage config
 const storageConfig = multer.diskStorage({
   destination: (req, file, cb) => {
-    const extn = Path.extname(file.originalname).toLowerCase();
+    const extn = path.extname(file.originalname).toLowerCase();
     if (extn === ".pdf") {
-      cb(null, Path.resolve("src", "public", "uploads"));
+      cb(null, path.resolve("public", "uploads"));
     } else if ([".jpg", ".jpeg", ".png", ".gif", ".webp"].includes(extn)) {
-      cb(null, Path.resolve("src", "public", "images"));
+      cb(null, path.resolve("public", "images"));
     } else {
       cb(new Error("Unsupported file type"), null);
     }
@@ -18,6 +19,18 @@ const storageConfig = multer.diskStorage({
   },
 });
 
+// file type filter
+const fileFilter = (req, file, cb) => {
+  const extn = path.extname(file.originalname).toLowerCase();
+  if ([".jpg", ".jpeg", ".png", ".gif", ".webp", ".pdf"].includes(extn)) {
+    cb(null, true);
+  } else {
+    cb(new Error("Unsupported file type"), false);
+  }
+};
+
+// export configured upload middleware
 export const uploadFile = multer({
   storage: storageConfig,
+  fileFilter
 });

@@ -221,7 +221,7 @@
                 </svg>
               </div>
               <div class="info-content">
-                <div class="applicants-count">Applicants</div>
+                <div class="applicants-count"><%= data.applicants.length %> Applicants</div>
               </div>
             </a>
           </div>
@@ -318,10 +318,9 @@
   </div>
 </div>
 
-<!-- enctype="multipart/form-data" -->
  
 <!-- Step 1: Name & Email -->
-<form id="multiStepForm" action="/apply/<%=data.id%>" method="post" >
+<form id="multiStepForm" action="/apply/<%=data.id%>" method="post" enctype="multipart/form-data" >
 <div class="modal fade" id="step1" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content border-0">

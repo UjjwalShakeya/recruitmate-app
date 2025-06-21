@@ -50,6 +50,6 @@ app.use('/',authRouter); // route for all auth requests
 
 app.use('/',jobRouter); // route for all jobs requests 
 
-app.listen(3000, () => {
+app.listen(3200, () => {
   console.log("server is listening at 3000");
 });

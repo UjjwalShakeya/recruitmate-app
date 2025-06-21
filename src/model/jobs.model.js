@@ -99,16 +99,18 @@ export default class JobsModel {
   }
 
   //   adding a new applicant
-  static addApplicants(id, data) {
-    const jobIndex = jobs.findIndex((job) => job.id == id); // find correct index
-    if (jobIndex === -1) return null; // job not found
+  static addApplicants(jobId, applicant) {
+    const jobIndex = jobs.findIndex((job) => job.id == jobId);
 
-    // Initialize applicants array if not present
+    if (jobIndex === -1) return null;
+
     if (!jobs[jobIndex].applicants) {
       jobs[jobIndex].applicants = [];
-    };
+    }
 
-    jobs[jobIndex].applicants.push(data);
+    jobs[jobIndex].applicants.push(applicant);
+    console.log("Updated Applicants:", jobs[jobIndex].applicants);
+
     return jobs[jobIndex].applicants;
   }
 }
