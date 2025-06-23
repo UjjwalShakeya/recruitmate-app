@@ -1,6 +1,7 @@
 // imported modules here
 
 import JobsModel from "../model/jobs.model.js";
+import { sendMailConfirmation } from "../utils/mailer.js";
 
 export default class JobController {
   // getting all jobs
@@ -84,7 +85,7 @@ export default class JobController {
   };
   
   // adding a new applicants
-  addNewApplicant(req, res) {
+  async addNewApplicant(req, res) {
     const { id } = req.params; // constructing id from params
     const applicantData = req.body; 
     applicantData.resume = req.file?.filename;
@@ -92,6 +93,7 @@ export default class JobController {
     if (!newApplicant) {
       return res.render("404");
     };
+    await sendMailConfirmation(applicantData);
     return res.redirect(`/jobs`);
   };
 };
