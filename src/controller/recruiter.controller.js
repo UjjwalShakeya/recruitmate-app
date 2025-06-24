@@ -23,7 +23,7 @@ export default class recruitersController {
       return res.render("user-login", { msg: "Invalid Credentials" }); // if recruiter not found throwing error in login.ejs with errorMessage
     }
     req.session.user = recruiterFound; // parsing session in request
-
+    req.session.justLoggedIn = true; 
     res.redirect("/"); // if recruiter successfully log in then render to index
   };
 
@@ -35,6 +35,8 @@ export default class recruitersController {
         return res.status(500).send("Error logging out");
       }
       res.clearCookie("connect.sid"); // Optional: removes session cookie
+      res.clearCookie("lastVisit", { path: "/" });
+ // clearing right here cookies
       res.redirect("/"); // Redirect to home or login page
     });
   };

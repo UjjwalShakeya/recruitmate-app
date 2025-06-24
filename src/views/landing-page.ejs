@@ -1,4 +1,21 @@
 <!-- ====== Hero Section (Find your dream job) ====== -->
+
+<!-- lastVisit Ejs -->
+<% if (locals.lastVisit ) { %>
+  <div class="last-visit-notification" id="lastVisitBox">
+    <div class="last-visit-content">
+      <span class="last-visit-icon">⚠️</span>
+      <div class="last-visit-text">
+        <p class="visit-heading"><strong>Welcome back!</strong></p>
+        <p class="visit-sub">Your last visit was <%= new Date(locals.lastVisit).toLocaleString() %></p>
+      </div>
+    </div>
+    <button class="last-visit-close" onclick="document.getElementById('lastVisitBox').style.display = 'none'">✕</button>
+  </div>
+<% } %>
+
+
+
 <div class="container-lpage py-5">
   <div class="container-fluid main d-flex flex-column flex-md-row align-items-center justify-content-between">
     
@@ -682,6 +699,67 @@
     word-break: break-word;
   }
 
+  /* lastVisit Style  */
+  .last-visit-notification {
+    display: flex;
+    position:fixed;
+    right: 2%;
+    bottom: 2%;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff7f0;
+    border: 1px solid #ffa94d;
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    max-width: 500px;
+    margin: 1.5rem auto;
+    box-shadow: 0 8px 20px rgba(255, 165, 0, 0.15);
+    font-family: 'Segoe UI', sans-serif;
+    animation: fadeIn 0.5s ease-in-out;
+    z-index: 10;
+  }
+
+  .last-visit-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .last-visit-icon {
+    font-size: 1.5rem;
+    color: #ff7a00;
+  }
+
+  .last-visit-text .visit-heading {
+    margin: 0;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .last-visit-text .visit-sub {
+    margin: 0;
+    color: #555;
+    font-size: 0.9rem;
+  }
+
+  .last-visit-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #ff7a00;
+    transition: color 0.3s;
+  }
+
+  .last-visit-close:hover {
+    color: #d64f00;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
    
 </style>
 
@@ -735,6 +813,13 @@
 </div>
 
 <script>
+
+  // Auto-hide the Last Visit box after 5 seconds
+    setTimeout(() => {
+      const box = document.getElementById("lastVisitBox");
+      if (box) box.style.display = "none";
+    }, 5000); // 7 seconds
+    
   // Password Toggle Visibility
   document.getElementById('togglePassword').addEventListener('click', function () {
     const passwordInput = document.getElementById('loginPassword');
@@ -744,6 +829,8 @@
     this.querySelector('i').classList.toggle('fa-eye-slash');
   });
 
+
+  // Success Stories animation
   var textWrapper = document.querySelector(".ml12");
   textWrapper.innerHTML = textWrapper.textContent.replace(
     /\S/g,

@@ -8,7 +8,9 @@ const __dirname = path.dirname(__filename);
 import authRouter from "./src/routes/auth.routes.js";
 import jobRouter from "./src/routes/jobs.routes.js";
 import session from "express-session";
-
+import cookieParser from "cookie-parser";  // cookie parser
+import { setLastVisit } from "./src/middlewares/LastVisit.js"; // lastVisit middleware
+ 
 // reassign initiated express
 const app = express();
 // used in Express.js to parse incoming JSON data from the request body.
@@ -34,6 +36,10 @@ app.use(session({
   saveUninitialized: true,
   cookie : {secure: false}, // we are setting this as false because  there is no secure server yet has been created for example https
 }));
+
+// enabeling last visit up lastLast
+app.use(cookieParser()) // using cookieParser here 
+app.use(setLastVisit);
 
 // using locals storage to store sessioned userEmail
 app.use((req, res, next) => {
