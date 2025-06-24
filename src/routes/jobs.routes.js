@@ -48,7 +48,7 @@ router.post(
 router.get("/job/delete/:id", auth, jobsControllerInc.deleteJobById);
 
 // GET  /job/applicants/2 - getting all applicants
-router.get("/job/applicants/:id", jobsControllerInc.getAllApplicants);
+router.get("/job/applicants/:id", auth, jobsControllerInc.getAllApplicants);
 
 // POST /apply/3 - adding new applicant
 router.post(
