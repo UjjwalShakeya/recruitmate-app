@@ -24,7 +24,7 @@ router.get("/postjob", auth, (req, res) => {
 
 router.post(
   "/job",
-  // auth,
+  auth,
   uploadFile.single("logo"),
   validationMiddleware,
   jobsControllerInc.createJob

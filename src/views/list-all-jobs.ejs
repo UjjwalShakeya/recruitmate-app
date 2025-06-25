@@ -73,29 +73,35 @@
   </div>
 
   <div class="jobs-content">
-    <div class="search-container">
-      <div class="search-input">
-        <i class="bi bi-search"></i>
-        <input type="text" placeholder="Search job titles or keywords" />
-      </div>
-      <div class="location-input">
-        <i class="bi bi-geo-alt"></i>
-        <input type="text" placeholder="Location" />
-      </div>
-      <button class="search-btn">Search</button>
+    <form method="GET" action="/jobs" id="jobSearchForm">
+      
+  <!-- 🔍 Search Inputs -->
+  <div class="search-container">
+    <div class="search-input">
+      <i class="bi bi-search"></i>
+      <input type="text" name="keyword" placeholder="Search job titles or keywords" value="<%= keyword || '' %>" />
     </div>
+    <div class="location-input">
+      <i class="bi bi-geo-alt"></i>
+      <input type="text" name="location" placeholder="Location" value="<%= location || '' %>" />
+    </div>
+    <button type="submit" class="search-btn">Search</button>
+  </div>
 
-    <div class="jobs-section-header">
-      <div class="jobs-found">235 jobs found</div>
-      <div class="sort-options">
-        <span class="sort-by">Sort by:</span>
-        <select class="sort-select">
-          <option>Most relevant</option>
-          <option>Recent</option>
-          <option>Salary (high to low)</option>
-        </select>
-      </div>
+  <!-- 🔽 Sorting -->
+  <div class="jobs-section-header">
+    <div class="jobs-found"><%= jobs.length %> jobs found</div>
+    <div class="sort-options">
+      <span class="sort-by">Sort by:</span>
+      <select name="sort" class="sort-select" onchange="document.getElementById('jobSearchForm').submit()">
+        <option value="relevant" <%= sort === 'relevant' ? 'selected' : '' %>>Most relevant</option>
+        <option value="recent" <%= sort === 'recent' ? 'selected' : '' %>>Recent</option>
+        <option value="salary" <%= sort === 'salary' ? 'selected' : '' %>>Salary (high to low)</option>
+      </select>
     </div>
+  </div>
+</form>
+
 
     <div class="job-list">
       <% if(jobs.length === 0){ %>
@@ -130,7 +136,7 @@
             <% }); %> <% } %>
           </div>
           <div class="job-actions">
-            <div class="job-posted">127 applicants</div>
+            <div class="job-posted"><%= job.job_posted || 'N/A' %> · <%= (job.applicants && job.applicants.length) || 0 %> applicants</div>
             <div class="action-btns">
               <button class="save-btn">
                 <i class="bi bi-bookmark"></i> Save

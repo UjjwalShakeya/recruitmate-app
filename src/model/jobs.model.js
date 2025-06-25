@@ -14,7 +14,8 @@ export default class JobsModel {
     skills,
     logo,
     apply_by,
-    applicants
+    applicants,
+    jobPosted
   ) {
     this.id = id;
     this.job_category = job_category;
@@ -30,11 +31,41 @@ export default class JobsModel {
     this.company_logo = logo;
     this.apply_by = apply_by;
     this.applicants = applicants;
+    this.job_posted = jobPosted;
   }
 
   //   adding new job
-  static get() {
-    return jobs;
+  static get(keyword, location, sort) {
+    let filteredJobs = jobs;
+
+    // 🔍 Keyword Search
+    if (keyword) {
+      const lowerKeyword = keyword.toLowerCase();
+      filteredJobs = filteredJobs.filter((job) =>
+        job.job_designation?.toLowerCase().includes(lowerKeyword)
+      );
+    }
+
+    // 📍 Location Search
+    if (location) {
+      const lowerLocation = location.toLowerCase();
+      filteredJobs = filteredJobs.filter((job) =>
+        job.job_location?.toLowerCase().includes(lowerLocation)
+      );
+    }
+
+    if (sort === "salary") {
+      filteredJobs.sort((a, b) => {
+        const getSalary = (s) => parseInt((s || "").replace(/[^\d]/g, "")) || 0;
+        return getSalary(b.salary) - getSalary(a.salary);
+      });
+    } else if (sort === "recent") {
+      filteredJobs.sort(
+        (a, b) => new Date(b.job_posted) - new Date(a.job_posted)
+      );
+    }
+
+    return filteredJobs;
   }
 
   //   adding new job
@@ -54,6 +85,17 @@ export default class JobsModel {
       apply_by,
     } = job;
 
+    // getting current date to add in newJob
+    const now = new Date();
+    const postedDate = now.toLocaleString("en-IN", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+
     // creating model for job
     const newJob = new JobsModel(
       jobs.length + 1,
@@ -69,7 +111,8 @@ export default class JobsModel {
       checkSkills(skills_required),
       logo,
       apply_by,
-      []
+      [],
+      postedDate
     );
     return jobs.push(newJob);
   }
@@ -87,8 +130,18 @@ export default class JobsModel {
   //   adding new job
   static update(id, data) {
     const jobIndex = jobs.findIndex((j) => j.id == id);
-    data.id = id; // attaching id with data
-    jobs[jobIndex] = data;
+    if (jobIndex === -1) return -1;
+
+    const existingJob = jobs[jobIndex];
+
+    // Merge existing job with updated data — keeping jobposted
+    jobs[jobIndex] = {
+      ...existingJob,
+      ...data,
+      id: id, // ensure id remains unchanged
+      jobposted: existingJob.jobposted, // explicitly keep posted date
+    };
+
     return jobIndex;
   }
 
@@ -107,10 +160,7 @@ export default class JobsModel {
     if (!jobs[jobIndex].applicants) {
       jobs[jobIndex].applicants = [];
     }
-
     jobs[jobIndex].applicants.push(applicant);
-    console.log("Updated Applicants:", jobs[jobIndex].applicants);
-
     return jobs[jobIndex].applicants;
   }
 }
@@ -169,22 +219,6 @@ let jobs = [
     apply_by: "2025-08-16",
   },
 ];
-
-// 👇 Utility function to format salary
-// function formatSalary(salary) {
-//   const annualSalary = Number(salary);
-//   if (isNaN(annualSalary)) return "Invalid salary";
-
-//   // Convert to Lakhs
-//   const inLakhs = annualSalary / 100000;
-
-//   if (inLakhs >= 1) {
-//     return `₹${Math.round(inLakhs)} LPA`;
-//   } else {
-//     return `₹${annualSalary.toLocaleString()}/year`;
-//   }
-// }
-
 // checking the skills whether that is array or not
 function checkSkills(skills_required) {
   // 🛠 Ensure it's always an array

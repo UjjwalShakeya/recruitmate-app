@@ -6,12 +6,16 @@ import { sendMailConfirmation } from "../utils/mailer.js";
 export default class JobController {
   // getting all jobs
   getAllJobs(req, res) {
-    const jobs = JobsModel.get();
-    if (!jobs || jobs.length <= 0) {
-      return res.render("list-all-jobs", { msg: "something went wrong" });
-    }
-    return res.render("list-all-jobs", { jobs });
-  }
+  const { keyword, location, sort } = req.query;
+  const jobs = JobsModel.get(keyword, location, sort);
+  return res.render("list-all-jobs", {
+    jobs,
+    keyword,
+    location,
+    sort
+  });
+}
+
 
   createJob(req, res) {
     // accessing images file from images folder to render image in jobs section
