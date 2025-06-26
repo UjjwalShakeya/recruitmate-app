@@ -44,9 +44,11 @@
       </h2>
       <div class="actions">
         <a href="/jobs" class="btn btn-lg lbtn btn-primary">Job Seeker</a>
+        <% if (!locals.user) { %>
         <button data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="btn btn-lg lbtn btn-outline-primary mx-2">
           Recruiter
         </button>
+        <% } %>
       </div>
     </div>
 
