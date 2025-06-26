@@ -5,7 +5,7 @@ import auth from "../middlewares/auth.middleware.js";
 // multer imported here
 import { uploadFile } from "../middlewares/fileupload.middlware.js";
 
-import validationMiddleware from "../middlewares/validation.middleware.js";
+import validationMiddleware from "../middlewares/job.middleware.js";
 
 // Import the recruiter controller (make sure the path is correct)
 import JobsController from "../controller/jobs.controller.js";

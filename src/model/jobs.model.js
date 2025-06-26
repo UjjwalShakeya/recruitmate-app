@@ -115,7 +115,8 @@ export default class JobsModel {
       postedDate
     );
     return jobs.push(newJob);
-  }
+  };
+
   //   adding new job
   static find(id) {
     const isJobFound = jobs.find((job) => job.id == id);

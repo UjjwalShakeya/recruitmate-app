@@ -4,6 +4,7 @@ import JobsModel from "../model/jobs.model.js";
 import { sendMailConfirmation } from "../utils/mailer.js";
 
 export default class JobController {
+  
   // getting all jobs
   getAllJobs(req, res) {
   const { keyword, location, sort } = req.query;

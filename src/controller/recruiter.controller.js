@@ -23,7 +23,6 @@ export default class recruitersController {
       return res.render("user-login", { msg: "Invalid Credentials" }); // if recruiter not found throwing error in login.ejs with errorMessage
     }
     req.session.user = recruiterFound; // parsing session in request
-    req.session.justLoggedIn = true; 
     res.redirect("/"); // if recruiter successfully log in then render to index
   };
 

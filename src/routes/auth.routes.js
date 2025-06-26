@@ -5,13 +5,15 @@ const Router = express.Router();
 // Import the recruiter controller (make sure the path is correct)
 import RecruitersController from "../controller/recruiter.controller.js";
 
+import validateLogin from "../middlewares/validateLogin.middleware.js";
+
 // Create an instance of the controller class
 const recruitersControllerInc = new RecruitersController();
 
 // ************ Auth Routes ************ //
 
 // posting on register
-Router.post("/register", recruitersControllerInc.PostRegister);
+Router.post("/register",validateLogin, recruitersControllerInc.PostRegister);
 
 // Render the login page (GET /)
 Router.get("/login", recruitersControllerInc.getLogin);
