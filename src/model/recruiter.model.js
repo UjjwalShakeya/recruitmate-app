@@ -6,7 +6,7 @@ export default class recruiterModel {
       name: "Ujjwal Shakeya",
       email: "ujjwalshakeya1@gmail.com",
       password: "123",
-    }
+    },
   ];
 
   constructor(id, name, email, password) {
@@ -18,14 +18,20 @@ export default class recruiterModel {
   //   adding recruiters
   static add(Userdata) {
     const { name, email, password } = Userdata;
-    const newrecruiter = new recruiterModel(
-      this.users.length,
-      name,
-      email,
-      password
-    );
-    this.users.push(newrecruiter);
-    return newrecruiter;
+
+    // check if user already exist
+    const existUser = this.users.find((u) => u.email == email);
+    if (!existUser) {
+      const newrecruiter = new recruiterModel(
+        this.users.length,
+        name,
+        email,
+        password
+      );
+      this.users.push(newrecruiter);
+      return newrecruiter;
+    }
+    return;
   }
 
   //   checking user
@@ -37,4 +43,4 @@ export default class recruiterModel {
       return result;
     }
   }
-};
+}

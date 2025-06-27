@@ -1,4 +1,5 @@
 // import modules right here
+import { render } from "ejs";
 import recruiterModel from "../model/recruiter.model.js";
 
 // model for recruiters
@@ -6,8 +7,11 @@ export default class recruitersController {
 
   // post Register
   PostRegister(req, res, next) {
-    recruiterModel.add(req.body);
-    return res.redirect("/login");
+    const user = recruiterModel.add(req.body);
+    if (!user){
+      return res.render('landing-page', {errorMessage: "User is already exist"})
+    }
+    res.redirect("/jobs");
   };
 
   // post Login
