@@ -1,5 +1,5 @@
+// importing modules
 import nodemailer from "nodemailer";
-
 import dotenv from "dotenv";
 
 // Load .env variables

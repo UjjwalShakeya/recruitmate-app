@@ -17,7 +17,6 @@ export default class JobController {
   });
 }
 
-
   createJob(req, res) {
     // accessing images file from images folder to render image in jobs section
     const logo = "images/" + req.file.filename;

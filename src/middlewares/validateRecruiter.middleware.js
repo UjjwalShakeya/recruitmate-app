@@ -1,7 +1,7 @@
 // imported modules
 import { body, validationResult } from "express-validator";
 
-const validateLogin = async (req, res, next) => {
+const validateRecruiter = async (req, res, next) => {
   // 1. Setup rules for validation.
   const rules = [
     body("name")
@@ -39,4 +39,4 @@ const validateLogin = async (req, res, next) => {
   next();
 };
 
-export default validateLogin;
+export default validateRecruiter;
