@@ -24,7 +24,7 @@ export default class JobController {
 
     const newJob = JobsModel.add(req.body);
     if (newJob == 0 || !newJob) {
-      return res.render("404");
+      return res.render("jobs",  {errorMessage: "something went wrong while creating job"});
     }
     res.redirect("/jobs");
   }
@@ -63,7 +63,7 @@ export default class JobController {
   
   const isJobUpdated = JobsModel.update(id, data); 
   if (!isJobUpdated) {
-    return res.render("404");
+    return res.render("jobs",{errorMessage: "something went wrong while updating job"});
   }
   return res.redirect("/jobs");
 };

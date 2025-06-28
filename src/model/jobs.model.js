@@ -34,7 +34,7 @@ export default class JobsModel {
     this.job_posted = jobPosted;
   }
 
-  //   adding new job
+  //   getting jobs
   static get(keyword, location, sort) {
     let filteredJobs = jobs;
 
@@ -64,7 +64,6 @@ export default class JobsModel {
         (a, b) => new Date(b.job_posted) - new Date(a.job_posted)
       );
     }
-
     return filteredJobs;
   }
 
