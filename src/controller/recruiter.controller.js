@@ -24,8 +24,8 @@ export default class recruitersController {
     const recruiterFound = recruiterModel.isValidUser(email, password);
 
     if (!recruiterFound) {
-      return res.render("user-login", { msg: "Invalid Credentials" }); // if recruiter not found throwing error in login.ejs with errorMessage
-    }
+      return res.render("user-login",  {errorMessage: "Invalid Credentials"} ); // if recruiter not found throwing error in login.ejs with errorMessage
+    };
     req.session.user = recruiterFound; // parsing session in request
     res.redirect("/"); // if recruiter successfully log in then render to index
   };

@@ -111,10 +111,10 @@ These features can be added to maximize performance, usability, and score:
    npm install
    ```
 
-3. **Run the development server**
+3. **Run the Application**
 
    ```bash
-   npm start
+   node index
    ```
 
 4. **Open in browser**

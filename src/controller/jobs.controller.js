@@ -23,7 +23,7 @@ export default class JobController {
     req.body.logo = logo;
 
     const newJob = JobsModel.add(req.body);
-    if (newJob == 0) {
+    if (newJob == 0 || !newJob) {
       return res.render("404");
     }
     res.redirect("/jobs");
