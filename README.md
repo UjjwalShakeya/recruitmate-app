@@ -1,3 +1,12 @@
+## ⚙️ Environment Configuration
+
+Before running the project, create a `.env` file in the root directory and add the following environment variables:
+
+env
+EMAIL=your-email@example.com
+EMAIL_PASS=your-email-app-password
+
+
 # 🧑‍💼 RecruitMate - Job Recruitment Portal
 
 RecruitMate is a full-featured Node.js job recruitment platform built using Express.js and EJS, designed to streamline the process for recruiters to post jobs and manage applicants. Applicants can browse jobs, view details, and apply with uploaded resumes. The app uses an MVC architecture, session management, middleware, and email services — ideal for learning full-stack development principles.
