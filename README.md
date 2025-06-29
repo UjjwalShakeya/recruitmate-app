@@ -147,7 +147,7 @@ These features can be added to maximize performance, usability, and score:
 ## 📁 Project Structure
 
 recruitmate-app/
-├── node_modules/           # Installed dependencies
+├── node\_modules/           # Installed dependencies
 ├── public/                 # Static assets (CSS, images, etc.)
 ├── src/                    # Application source code
 │   ├── controller/         # Route handler logic
