@@ -121,33 +121,36 @@ These features can be added to maximize performance, usability, and score:
 
 ## 🛠 Setup Instructions
 
-## 1. Clone the repository
+### 1. Clone the repository
 
-   bash
-   git clone https://github.com/UjjwalShakeya/recruitmate-app.git
-   cd recruitmate-app
-`
+```bash
+git clone https://github.com/UjjwalShakeya/recruitmate-app.git
+cd recruitmate-app
+````
 
 ### 2. Install dependencies
 
-   bash
-   npm install
+```bash
+npm install
+```
 
 ### 3. Run the Application
 
-   bash
-   node index
+```bash
+node index
+```
 
 ### 4. Open in browser
 
-   http://localhost:3200
+[http://localhost:3200](http://localhost:3200)
 
 ---
 
 ## 📁 Project Structure
 
+```plaintext
 recruitmate-app/
-├── node\_modules/           # Installed dependencies
+├── node_modules/           # Installed dependencies
 ├── public/                 # Static assets (CSS, images, etc.)
 ├── src/                    # Application source code
 │   ├── controller/         # Route handler logic
@@ -162,6 +165,7 @@ recruitmate-app/
 ├── package-lock.json       # Dependency lock file
 ├── package.json            # Project metadata and scripts
 └── README.md               # Project overview and documentation
+```
 
 ---
 
@@ -174,4 +178,9 @@ Feel free to raise an issue or suggest improvements.
 
 ## 📄 License
 
-This project was built for academic purposes as part of a full-stack development assignment. Use freely with attribution
+This project was built for academic purposes as part of a full-stack development assignment.
+Use freely with attribution.
+
+````
+
+---
