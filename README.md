@@ -140,12 +140,10 @@ npm install
 node index
 ```
 
----
-
 ### 4. Open in browser
 
 ```bash
-[http://localhost:3200](http://localhost:3200)
+http://localhost:3200
 ```
 
 ---
