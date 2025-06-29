@@ -24,6 +24,19 @@ RecruitMate is a full-featured Node.js job recruitment platform built using Expr
 
 ---
 
+## 👥 User Roles & Features
+
+### 👨‍💼 Recruiters
+- Create, update, and remove job listings  
+- Access and review applicant details and uploaded résumés  
+
+### 🙋 Applicants
+- Explore all available job opportunities  
+- View comprehensive job descriptions  
+- Apply for jobs by submitting their résumé  
+
+---
+
 ## 🧩 Component Structure
 
 | Page               | Description                                                         |
@@ -99,51 +112,51 @@ These features can be added to maximize performance, usability, and score:
 
 ## 🛠 Setup Instructions
 
-1. **Clone the repository**
-   ```bash
+## 1. Clone the repository
+
+   bash
    git clone https://github.com/UjjwalShakeya/recruitmate-app.git
    cd recruitmate-app
-````
+`
 
-2. **Install dependencies**
+### 2. Install dependencies
 
-   ```bash
+   bash
    npm install
-   ```
 
-3. **Run the Application**
+### 3. Run the Application
 
-   ```bash
+   bash
    node index
-   ```
 
-4. **Open in browser**
+### 4. Open in browser
 
-   ```
-   http://localhost:3000
-   ```
+   http://localhost:3200
 
 ---
 
 ## 📁 Project Structure
 
-```
 recruitmate-app/
-├── public/             # CSS & static assets
-├── uploads/            # Uploaded resumes
-├── src/
-│   ├── models/         # Data logic
-│   ├── views/          # EJS templates
-│   ├── routes/         # Route definitions
-│   ├── controllers/    # Route handlers
-│   ├── middlewares/    # Auth, file upload, lastVisit, etc.
-│   └── utils/          # Email and helper logic
-├── app.js              # Express app entry point
-```
+├── node_modules/           # Installed dependencies
+├── public/                 # Static assets (CSS, images, etc.)
+├── src/                    # Application source code
+│   ├── controller/         # Route handler logic
+│   ├── middlewares/        # Middleware functions (auth, file upload, etc.)
+│   ├── model/              # Application data models
+│   ├── routes/             # Express route definitions
+│   ├── utils/              # Helper functions and utilities
+│   └── views/              # EJS templates for UI rendering
+├── .env                    # Environment variables
+├── .gitignore              # Files/folders ignored by Git
+├── index.js                # Main entry point of the application
+├── package-lock.json       # Dependency lock file
+├── package.json            # Project metadata and scripts
+└── README.md               # Project overview and documentation
 
 ---
 
-## 📬 Contact
+## 🧑‍💻 Author
 
 Built with ❤️ by [Ujjwal Shakeya](https://github.com/UjjwalShakeya)
 Feel free to raise an issue or suggest improvements.
@@ -152,6 +165,4 @@ Feel free to raise an issue or suggest improvements.
 
 ## 📄 License
 
-This project was built for academic purposes as part of a full-stack development assignment.
-
-```
+This project was built for academic purposes as part of a full-stack development assignment. Use freely with attribution
