@@ -140,9 +140,13 @@ npm install
 node index
 ```
 
+---
+
 ### 4. Open in browser
 
+```bash
 [http://localhost:3200](http://localhost:3200)
+```
 
 ---
 
@@ -180,7 +184,5 @@ Feel free to raise an issue or suggest improvements.
 
 This project was built for academic purposes as part of a full-stack development assignment.
 Use freely with attribution.
-
-````
 
 ---
