@@ -1,11 +1,18 @@
 ## ⚙️ Environment Configuration
 
-Before running the project, create a `.env` file in the root directory and add the following environment variables:
+> ⚠️ The `.env` file is **not included** in this repository for security reasons.  
+> You **must create it manually** before running the application.
+
+### 📄 Steps to Set Up `.env`
+
+1. In the root directory of the project (same level as `index.js`), create a new file named `.env`.
+2. Add the following environment variables to the file:
 
 env
+```
 EMAIL=your-email@example.com
-EMAIL_PASS=your-email-app-password
-
+EMAIL_PASS=your-app-specific-password
+```
 
 # 🧑‍💼 RecruitMate - Job Recruitment Portal
 
